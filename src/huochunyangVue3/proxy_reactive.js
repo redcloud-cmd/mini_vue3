@@ -32,6 +32,7 @@ const data = {text:'hello world'}   //原始数据
 const obj = new Proxy(data,{ 
     //对原始数据的代理
     get(target,key){
+        console.log(key,"key")
         if(activeEffect){
             bucket.add(activeEffect) 
         }  
@@ -39,6 +40,7 @@ const obj = new Proxy(data,{
         return target[key]
     },
     set(target,key,newVal){
+        console.log(key,"setkey")
         target[key] = newVal
         bucket.forEach(fn=>fn())      //将副作用从桶中取出
         return true
