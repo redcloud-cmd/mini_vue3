@@ -77,7 +77,7 @@ const obj = new Proxy(data,{
     //拦截读取操作
     get(target,key){
         //没有activeEffect 直接return
-
+        console.log(target,"target")
         if(!activeEffect) return target[key]
         //根据target 从“桶”中取得depsMap,它是个Map类型： key --> effects
         let depsMap = bucket.get(target)
@@ -105,15 +105,23 @@ const obj = new Proxy(data,{
         if(!depsMap) return 
         //根据key取得所有副作用函数effects
         const effects = depsMap.get(key)
+        console.log(effects,"effectsssss")
         //执行副作用函数
         effects &&effects.forEach(fn => fn())
     }
 })
-effect(()=>{ 
-        a= obj.text
-        console.log(a)
-    })
-    setTimeout(()=>{
-        obj.text = 'hello vue3'
-        obj.noExist = "no 属性"             //noExist会触发obj设置操作，导致同个对象不同属性读取出发effectFn 
-    },1000)
+// effect(()=>{ 
+//         a= obj.text
+//         console.log(a)
+//     })
+
+function test(){
+   
+    obj.text="你好"
+    console.log(obj,"obj")
+}
+test()
+    // setTimeout(()=>{
+    //     obj.text = 'hello vue3'
+    //     obj.noExist = "no 属性"             //noExist会触发obj设置操作，导致同个对象不同属性读取出发effectFn 
+    // },1000)
