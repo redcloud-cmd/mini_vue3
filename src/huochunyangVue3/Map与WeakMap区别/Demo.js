@@ -1,5 +1,5 @@
 const map = new Map();
-const weakmap = new WeakMap();
+const weakmap = new WeakMap([[22, 23], [33, 34]]);
 // console.log(map)
 
 function erconst(){
