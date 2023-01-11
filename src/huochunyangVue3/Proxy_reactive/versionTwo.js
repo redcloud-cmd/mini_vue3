@@ -33,8 +33,9 @@ effect(()=>{
     a= obj.text
     console.log(a)
 })
-// setTimeout(()=>{
-//     obj.text = 'hello vue3'
-//     obj.noExist = "no 属性"             //noExist会触发obj设置操作，导致同个对象不同属性读取出发effectFn 
-// },1000)
+setTimeout(()=>{
+    console.log(obj,"objjj")
+    obj.text = 'hello vue3'
+    obj.noExist = "no 属性"             //noExist会触发obj设置操作，导致同个对象不同属性读取出发effectFn 
+},1000)
 
