@@ -1,4 +1,5 @@
 import { reactive } from "../reactive";
+import {effect} from '../effect'
 describe('effect',()=>{
     
     it('happy path',()=>{
@@ -6,10 +7,10 @@ describe('effect',()=>{
             age:10
         })
         let nextAge ;
-        // effect(()=>{
-        //     nextAge= user.age+1
-        //     // console.log()
-        // });
+        effect(()=>{
+            nextAge= user.age+1
+            // console.log()
+        });
         expect(nextAge).toBe(11)
     })
 })
